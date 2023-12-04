@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}register{% endblock %}
+{% block body %}
+    <form action="register" method="post">
+        {% csrf_token %}
+        <input type="text" name="firstname" placeholder="firstname" required><br>
+        <input type="text" name="lastname" placeholder="lastname" required><br>
+        <input type="email" name="email" placeholder="email" required><br>
+        <input type="text" name="id" placeholder="your_id" required><br>
+        <input type="password" name="password1" placeholder="password" required><br>
+        <input type="password" name="password2" placeholder="confirm password" required><br>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="catageory" id="Radio1" value="student">
+            <label class="form-check-label" for="Radio1">student</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="catageory" id="Radio2" value="teacher">
+            <label class="form-check-label" for="Radio2">teacher</label>
+        </div>
+        <input type="submit">
+    </form>
+
+    <div>
+        {% for message in messages %}
+            <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+{% endblock %}

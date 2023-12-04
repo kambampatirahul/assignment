@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}solassignment{% endblock %}
+{% block body %}
+{% if user.is_authenticated %}
+    <form action="{% url 'ass' title=ass.title %}" method="post">
+        {% csrf_token %}
+        <h2>{{ass.title}}</h2>
+        <h3>{{ass.questions}}</h3>
+        <textarea name="solution" placeholder="write your answer" required></textarea><br>
+        <input type="submit">
+    </form>
+{% endif %}
+{% endblock %}

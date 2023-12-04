@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}solassignment{% endblock %}
+{% block body %}
+{% if user.is_authenticated %}
+    <form action="{% url 'rewords' title=ass.title id=ass.stu_id%}" method="post">
+        {% csrf_token %}
+        <h2>{{ass.title}}</h2>
+        <h3>{{ass.solution}}</h3>
+        <input type="number" name="marks" required>marks</input><br>
+        <input type="text" name="remarks" width="200px">remarks</input><br>
+        <input type="submit">
+    </form>
+{% endif %}
+{% endblock %}

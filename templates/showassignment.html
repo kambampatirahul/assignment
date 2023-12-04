@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}showassignment{% endblock %}
+{% block body %}
+    {% if user.is_authenticated %}
+        <a href="logout">logout</a><br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">TITLE</th>
+                    <th scope="col">QUESTIONS</th>
+                    <th scope="col">Last DATE</th>
+                    <th scope="col">Marks</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">SOLUTION SUMBITION</th>
+                </tr>
+            </thead>
+            {% for ass in sa %}
+                <tbody>
+                    <tr>
+                        <td>{{ass.title}}</td>
+                        <td>{{ass.questions}}</td>
+                        <td>{{ass.deadline}}</td>
+                        <td>{{ass.marks}}</td>
+                        <td>{{ass.remarks}}</td>
+                        {% if ass.deadline > now %}
+                            <td><a href="{% url 'solassignment' title=ass.title %}" class="btn btn-primary">submit solution</a></td>
+                        {% else %}
+                            <td><h4>deadline has passed</h4></td>
+                        {% endif %}
+
+                    </tr>
+                </tbody>
+           {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
