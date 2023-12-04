@@ -49,7 +49,7 @@ def login(request):
         password = request.POST.get('password')
         catageory = request.POST.get('catageory')
         cat = student.objects.get(email=user_name)
-        #print(cat)
+        print(cat)
         if cat.catageory == catageory:
             user = authenticate(username=user_name, password=password)
         else:
