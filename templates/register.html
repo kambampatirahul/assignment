@@ -1,28 +1,44 @@
 {% extends 'base.html' %}
-{% block title %}register{% endblock %}
-{% block body %}
-    <form action="register" method="post">
-        {% csrf_token %}
-        <input type="text" name="firstname" placeholder="firstname" required><br>
-        <input type="text" name="lastname" placeholder="lastname" required><br>
-        <input type="email" name="email" placeholder="email" required><br>
-        <input type="text" name="id" placeholder="your_id" required><br>
-        <input type="password" name="password1" placeholder="password" required><br>
-        <input type="password" name="password2" placeholder="confirm password" required><br>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="catageory" id="Radio1" value="student">
-            <label class="form-check-label" for="Radio1">student</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="catageory" id="Radio2" value="teacher">
-            <label class="form-check-label" for="Radio2">teacher</label>
-        </div>
-        <input type="submit">
-    </form>
+{% load static %}
 
-    <div>
-        {% for message in messages %}
-            <h3>{{message}}</h3>
-        {% endfor %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block title %}register{% endblock %}
+
+{% block body %}
+    <div class="loginbody">
+        <div class="main">
+            <div class="register">
+                <form action="register" method="post">
+                    {% csrf_token %}
+                    <label class="reg">Register</label>
+                    <input type="text" name="firstname" placeholder="firstname" required>
+                    <input type="text" name="lastname" placeholder="lastname" required>
+                    <input type="email" name="email" placeholder="email" required>
+                    <input type="text" name="id" placeholder="your_id" required>
+                    <input type="password" name="password1" placeholder="password" required>
+                    <input type="password" name="password2" placeholder="confirm password" required>
+                    <div class="form-check radio">
+                        <input class="form-check-input" type="radio" name="catageory" id="Radio1" value="student">
+                        <label class="form-check-label" for="Radio1">student</label>
+                    </div>
+                    <div class="form-check radio">
+                        <input class="form-check-input" type="radio" name="catageory" id="Radio2" value="teacher">
+                        <label class="form-check-label" for="Radio2">teacher</label>
+                    </div>
+                    <button class="button" type="submit">Sign Up</button>
+                </form>
+                <p>or</p>
+                <p>Already have an account</p>
+                <a href="{% url 'login' %}"><button class="button">Login</button></a>
+            </div>
+        </div>
+        <div>
+            {% for message in messages %}
+                <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
