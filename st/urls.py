@@ -12,5 +12,6 @@ urlpatterns = [
     path(r'ass/(?p<title>[0-9]+)$', views.ass, name='ass'),
     path(r'rewords/(?p<title>[0-9]+)/(?p<id>[0-9]+)$', views.rewords, name='rewords'),
     path('register', views.register, name='register'),
-    path('home', views.home, name='home')
+    path('home', views.home, name='home'),
+    path(r'rap/(?p<cato>[0-9]+)$', views.rap, name='rap')
 ]

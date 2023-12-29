@@ -8,7 +8,15 @@ from .models import student, assignment
 
 
 def home(request):
-    return render(request, 'home.html')
+    details = {'name':'', 'cat':'NA'}
+    if request.user.is_authenticated:
+        user = User.objects.get(id=request.user.id)
+        name = user.get_short_name()
+        cat = student.objects.get(email=user.get_username())
+        details['name']=name
+        details['cat']=cat.catageory
+        print(details,cat.catageory)
+    return render(request, 'home.html', details)
 
 
 def register(request):
@@ -49,9 +57,8 @@ def login(request):
         password = request.POST.get('password')
         catageory = request.POST.get('catageory')
         cat = student.objects.get(email=user_name)
-        print(cat)
         if cat.catageory == catageory:
-            user = authenticate(username=user_name, password=password)
+            user = authenticate(request, username=user_name, password=password)
         else:
             messages.info(request, 'invalid catageory')
             return redirect('login')
@@ -81,7 +88,6 @@ def addassignment(request):
             deadline = request.POST['deadline']
             id = request.POST['id']
             ass = assignment()
-            #print(id)
             ass.te_id = request.user.id
             ass.stu = student.objects.get(st_id=id)
             ass.title = title
@@ -139,3 +145,11 @@ def rewords(request,title,id):
         else:
             ass = assignment.objects.get(title=title)
             return render(request, 'rewords.html', {'ass': ass})
+
+def rap(request,cato):
+    if cato == 'NA':
+        return redirect('login')
+    if request.user.is_authenticated:
+        if cato=='student':
+            return redirect('showassignment')
+        else: return redirect('assignments')

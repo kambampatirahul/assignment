@@ -1,0 +1,40 @@
+.homebody{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 95%;
+	font-family: 'Jost', sans-serif;
+}
+.main{
+	width: 800px;
+	height: 450px;
+
+}
+
+p{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+	font-size: 3.5em;
+}
+
+.homebutton{
+    width: 70%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #573b8a;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 50px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}

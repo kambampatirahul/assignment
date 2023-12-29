@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}home{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
 {% block body %}
-    <a href="register">register</a><br>
-    <a href="login">login</a>
+    <div class="homebody">
+        <div class="main">
+            <p>Hi,
+                {% if user.is_authenticated %}
+                    {{name}}
+                {% endif %}
+                <br>welcome to <br>Online Assignment Submission
+            </p>
+            <a href="{% url 'rap' cato=cat %}"><button class="homebutton">Let's Get Started</button></a>
+
+        </div>
+    </div>
 {% endblock %}
